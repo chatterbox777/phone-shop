@@ -4,10 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./Components/Navbar";
 import ProductList from "./Components/ProductList";
 import Detail from "./Components/Detail";
-import Cart from "./Components/Cart";
 import Default from "./Components/Default";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Modal from "./Components/Modal";
+import Cart from "./Components/Cart";
 
 function App() {
   return (

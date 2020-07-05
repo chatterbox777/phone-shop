@@ -21,7 +21,7 @@ export default class Modal extends Component {
                   <div className="row">
                     <div
                       id="modal"
-                      className="col-8 mx-auto col-md-6 col-lg-4 text-center text-capitalize"
+                      className="col-8 mx-auto col-md-6 col-lg-4 text-center text-capitalize py-5"
                     >
                       <h5>Item added to the cart</h5>
                       <img src={img} className="img-fluid" alt="product" />
@@ -33,10 +33,7 @@ export default class Modal extends Component {
                         </ButtonContainer>
                       </Link>
                       <Link to="/cart">
-                        <ButtonContainer
-                          onClick={() => value.closeModal()}
-                          cart
-                        >
+                        <ButtonContainer onClick={() => closeModal()} cart>
                           Go to cart
                         </ButtonContainer>
                       </Link>
