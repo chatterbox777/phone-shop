@@ -64,7 +64,7 @@ export default class ProductProvider extends Component {
         cart: [...this.state.cart, product],
       },
       () => {
-        console.log(this.state);
+        this.addTotals();
       }
     );
   };
@@ -93,7 +93,21 @@ export default class ProductProvider extends Component {
     console.log(`remove this id: ${id}`);
   };
   clearCart = () => {
-    console.log(`clear cart`);
+    this.setState({
+      cart: [],
+    });
+  };
+  addTotals = () => {
+    let subTotal = 0;
+    this.state.cart.map((item) => (subTotal += item.total));
+    const tempTax = subTotal * 0.1;
+    const tax = parseFloat(tempTax.toFixed(2));
+    const total = subTotal + tax;
+    this.setState({
+      cartSubTotal: subTotal,
+      cartTax: tax,
+      cartTotal: total,
+    });
   };
   render() {
     return (

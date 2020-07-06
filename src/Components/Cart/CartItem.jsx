@@ -39,7 +39,7 @@ const CartItem = ({ item, value }) => {
         </div>
       </div>
       <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0">
-        <strong> item total: {total} $</strong>
+        <strong className="d-lg-none"> item total: </strong> {total} $
       </div>
     </div>
   );
