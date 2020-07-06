@@ -84,18 +84,58 @@ export default class ProductProvider extends Component {
   };
 
   increment = (id) => {
-    console.log(`increment this id : ${id}`);
+    let tempProducts = [...this.state.products];
+    const index = tempProducts.indexOf(this.getItem(id));
+    const product = tempProducts[index];
+    product.count += 1;
+    const price = product.price;
+    product.total = price * product.count;
+    this.setState(
+      {
+        products: tempProducts,
+      },
+      () => {
+        this.addTotals();
+      }
+    );
   };
   decrement = (id) => {
-    console.log(`decrement this id : ${id}`);
+    let tempProducts = [...this.state.products];
+    const index = tempProducts.indexOf(this.getItem(id));
+    const product = tempProducts[index];
+    if (product.count > 1) {
+      product.count -= 1;
+      const price = product.price;
+      product.total -= price;
+      this.setState(
+        {
+          products: tempProducts,
+        },
+        () => {
+          this.addTotals();
+        }
+      );
+    } else {
+      this.removeItem(id);
+    }
   };
   removeItem = (id) => {
-    console.log(`remove this id: ${id}`);
+    let tempCart = [...this.state.cart];
+    let newTempCarttempCart = tempCart.filter((item) => item.id != id);
+    this.setState({
+      cart: newTempCarttempCart,
+    });
   };
   clearCart = () => {
-    this.setState({
-      cart: [],
-    });
+    this.setState(
+      {
+        cart: [],
+      },
+      () => {
+        this.setProducts();
+        this.addTotals();
+      }
+    );
   };
   addTotals = () => {
     let subTotal = 0;
