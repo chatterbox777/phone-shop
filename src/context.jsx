@@ -120,11 +120,25 @@ export default class ProductProvider extends Component {
     }
   };
   removeItem = (id) => {
+    let tempProducts = [...this.state.products];
     let tempCart = [...this.state.cart];
-    let newTempCarttempCart = tempCart.filter((item) => item.id != id);
-    this.setState({
-      cart: newTempCarttempCart,
-    });
+    let newTempCarttempCart = tempCart.filter((item) => item.id !== id);
+    const index = tempProducts.indexOf(this.getItem(id));
+    let removedProduct = tempProducts[index];
+    removedProduct.inCart = false;
+    removedProduct.count = 0;
+    removedProduct.total = 0;
+    console.log(removedProduct);
+
+    this.setState(
+      {
+        cart: newTempCarttempCart,
+        products: [...tempProducts],
+      },
+      () => {
+        this.addTotals();
+      }
+    );
   };
   clearCart = () => {
     this.setState(
